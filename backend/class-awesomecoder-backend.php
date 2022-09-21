@@ -187,7 +187,7 @@ class Awesomecoder_Backend
 
 		// metabox css
 		if (in_array($hook, $this->metabox)) {
-			wp_enqueue_style("{$this->plugin_name}-metabox", PLAGIARISM_URL . 'backend/css/metabox.css', array(), filemtime(PLAGIARISM_PATH . "backend/css/metabox.css"), 'all');
+			// wp_enqueue_style("{$this->plugin_name}-metabox", PLAGIARISM_URL . 'backend/css/metabox.css', array(), filemtime(PLAGIARISM_PATH . "backend/css/metabox.css"), 'all');
 		}
 	}
 
@@ -241,7 +241,7 @@ class Awesomecoder_Backend
 
 		// metabox css
 		if (in_array($hook, $this->metabox)) {
-			wp_enqueue_script("{$this->plugin_name}-metabox", PLAGIARISM_URL . 'backend/js/metabox.js', array('jquery'), (filemtime(PLAGIARISM_PATH . "backend/js/metabox.js") ?? $this->version), true);
+			// wp_enqueue_script("{$this->plugin_name}-metabox", PLAGIARISM_URL . 'backend/js/metabox.js', array('jquery'), (filemtime(PLAGIARISM_PATH . "backend/js/metabox.js") ?? $this->version), true);
 		}
 	}
 }

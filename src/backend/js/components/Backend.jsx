@@ -5,6 +5,7 @@ export const headers = {
   headers: {
       'X-Requested-With': 'XMLHttpRequest',
       "Content-type": "multipart/form-data",
+      // "Keep-Alive": "timeout=5, max=1000",
   }
 };
 
