@@ -62,6 +62,37 @@ class Awesomecoder_Backend
 	 */
 	private  $metabox;
 
+
+	/**
+	 * The metabox of this plugin.
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 * @var      array    $post_types    Skip the post types.
+	 */
+	private  $post_types = [
+		'attachment',
+		'revision',
+		'nav_menu_item',
+		"attachment",
+		"custom_css",
+		"customize_changeset",
+		"nav_menu_item",
+		"oembed_cache",
+		"product_variation",
+		"revision",
+		"shop_coupon",
+		"shop_order",
+		"shop_order_placehold",
+		"shop_order_refund",
+		"user_request",
+		"wp_block",
+		"wp_global_styles",
+		"wp_navigation",
+		"wp_template",
+		"wp_template_part",
+	];
+
 	/**
 	 * Initialize the class and set its properties.
 	 *
@@ -182,99 +213,26 @@ class Awesomecoder_Backend
 
 		wp_enqueue_script("{$this->plugin_name}", PLAGIARISM_URL . 'backend/js/awesomecoder-init.js', array('jquery'), (filemtime(PLAGIARISM_PATH . "backend/js/awesomecoder-init.js") ?? $this->version), false);
 		// Some local vairable to get ajax url
+		$post_types = array_diff(get_post_types(), $this->post_types);
 		wp_localize_script($this->plugin_name, 'awesomecoder', array(
 			"plugin" => [
-				"name"		=> 	"PlayStore Data Scraper",
+				"name"		=> 	"WP Plagiarism",
 				"author" 	=>	"Mohammad Ibrahim",
 				"email" 	=>	"awesomecoder.dev@gmail.com",
 				"website" 	=>	"https://awesomecoder.dev",
 			],
-			"url" 		=> get_bloginfo('url'),
-			"ajaxurl"	=> admin_url("admin-ajax.php?action=awesomecoder_backend"),
-			"metabox" => [
-				"fields" => [
-					[
-						"label" => __("App Link", "awesomecoder"),
-						"placeholder" => __("App Link", "awesomecoder"),
-						"name" => "awesomecoder_app_link",
-						"type" => "text",
-					],
-					[
-						"label" => __("Icon", "awesomecoder"),
-						"placeholder" => __("Icon", "awesomecoder"),
-						"name" => "awesomecoder_app_icon",
-						"type" => "text",
-					],
-					[
-						"label" => __("Downloads", "awesomecoder"),
-						"placeholder" => __("Downloads", "awesomecoder"),
-						"name" => "awesomecoder_app_downloads",
-						"type" => "text",
-					],
-					[
-						"label" => __("Stars", "awesomecoder"),
-						"placeholder" => __("Stars", "awesomecoder"),
-						"name" => "awesomecoder_app_stars",
-						"type" => "text",
-					],
-					[
-						"label" => __("Ratings", "awesomecoder"),
-						"placeholder" => __("Ratings", "awesomecoder"),
-						"name" => "awesomecoder_app_ratings",
-						"type" => "text",
-					],
-					[
-						"label" => __("Company Name", "awesomecoder"),
-						"placeholder" => __("Company Name", "awesomecoder"),
-						"name" => "awesomecoder_app_devName",
-						"type" => "text",
-					],
-					[
-						"label" => __("Company Link", "awesomecoder"),
-						"placeholder" => __("Company Link", "awesomecoder"),
-						"name" => "awesomecoder_app_devLink",
-						"type" => "text",
-					],
-					[
-						"label" => __("Last Version", "awesomecoder"),
-						"placeholder" => __("Last Version", "awesomecoder"),
-						"name" => "awesomecoder_app_last_version",
-						"type" => "text",
-					],
-					[
-						"label" => __("Size", "awesomecoder"),
-						"placeholder" => __("Size", "awesomecoder"),
-						"name" => "awesomecoder_app_size",
-						"type" => "text",
-					],
-					[
-						"label" => __("Compatible With", "awesomecoder"),
-						"placeholder" => __("Compatible With", "awesomecoder"),
-						"name" => "awesomecoder_app_compatible_with",
-						"type" => "text",
-					],
-					[
-						"label" => __("Price", "awesomecoder"),
-						"placeholder" => __("Price", "awesomecoder"),
-						"name" => "awesomecoder_app_price",
-						"type" => "text",
-					],
-
-				],
-				"states" => [
-					"awesomecoder_app_icon" => get_post_meta(get_the_ID(), "awesomecoder_app_icon", true),
-					"awesomecoder_app_downloads" => get_post_meta(get_the_ID(), "awesomecoder_app_downloads", true),
-					"awesomecoder_app_stars" => get_post_meta(get_the_ID(), "awesomecoder_app_stars", true),
-					"awesomecoder_app_ratings" => get_post_meta(get_the_ID(), "awesomecoder_app_ratings", true),
-					"awesomecoder_app_devName" => get_post_meta(get_the_ID(), "awesomecoder_app_devName", true),
-					"awesomecoder_app_devLink" => get_post_meta(get_the_ID(), "awesomecoder_app_devLink", true),
-					"awesomecoder_app_compatible_with" => get_post_meta(get_the_ID(), "awesomecoder_app_compatible_with", true),
-					"awesomecoder_app_size" => get_post_meta(get_the_ID(), "awesomecoder_app_size", true),
-					"awesomecoder_app_last_version" => get_post_meta(get_the_ID(), "awesomecoder_app_last_version", true),
-					"awesomecoder_app_link" => get_post_meta(get_the_ID(), "awesomecoder_app_link", true),
-					"awesomecoder_app_price" => get_post_meta(get_the_ID(), "awesomecoder_app_price", true),
-				]
-			]
+			"url" 			=> get_bloginfo('url'),
+			"ajaxurl"		=> admin_url("admin-ajax.php?action=awesomecoder_backend"),
+			"post_types"	=> $post_types,
+			// "posts" 		=> get_posts([
+			// 	'post_type' => $post_types,
+			// 	'posts_per_page' => -1,
+			// 	// 'order' => $sort_by,
+			// 	'orderby' => 'title',
+			// 	'post_status' => 'publish',
+			// 	// 'tag' => $tags,
+			// 	'ignore_sticky_posts' => 1,
+			// ])
 		));
 
 		if (in_array($hook, $this->pages)) {

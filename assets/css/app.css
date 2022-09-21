@@ -1,6 +1,5 @@
 #wpbody{
     font-family: 'Poppins', sans-serif;
-    background: white !important;
 }
 .notice {
     display: none !important;
@@ -10,5 +9,5 @@
 }
 
 #wpwrap{
-    background: white !important;
+    /* background: white !important; */
 }

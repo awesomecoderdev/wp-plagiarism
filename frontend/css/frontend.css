@@ -715,9 +715,6 @@ select{
 .min-h-\[12rem\]{
   min-height: 12rem;
 }
-.min-h-\[2\.9rem\]{
-  min-height: 2.9rem;
-}
 .w-full{
   width: 100%;
 }
@@ -968,6 +965,18 @@ select{
   padding-left: 0.75rem;
   padding-right: 0.75rem;
 }
+.py-4{
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+.px-6{
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+.px-5{
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
 .pr-2{
   padding-right: 0.5rem;
 }
@@ -1055,10 +1064,6 @@ select{
 .shadow-slate-200{
   --tw-shadow-color: #e2e8f0;
   --tw-shadow: var(--tw-shadow-colored);
-}
-.drop-shadow-2xl{
-  --tw-drop-shadow: drop-shadow(0 25px 25px rgb(0 0 0 / 0.15));
-  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 .transition-all{
   transition-property: all;
